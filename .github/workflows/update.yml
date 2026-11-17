@@ -39,7 +39,7 @@ jobs:
       - name: Сборка
         env:
           SITE_URL: ${{ vars.SITE_URL || 'https://artempiskun.github.io/vihub' }}
-          TELEGRAM_URL: ${{ vars.TELEGRAM_URL }}
+          TELEGRAM_URL: ${{ vars.TELEGRAM_URL || 'https://t.me/PIR_LIFE' }}
           YOUTUBE_URL: ${{ vars.YOUTUBE_URL }}
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: python scripts/build.py

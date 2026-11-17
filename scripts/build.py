@@ -19,7 +19,7 @@ CONTENT = os.path.join(ROOT, "content")
 DIST = os.path.join(ROOT, "dist")
 
 SITE_NAME = "VI HUB"
-TELEGRAM_URL = os.environ.get("TELEGRAM_URL", "https://t.me/")
+TELEGRAM_URL = os.environ.get("TELEGRAM_URL") or "https://t.me/PIR_LIFE"
 YOUTUBE_URL = os.environ.get("YOUTUBE_URL", "")
 LANGS = ["ru", "en"]
 PREFIX = {"ru": "", "en": "en/"}
