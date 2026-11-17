@@ -38,7 +38,7 @@ jobs:
           git diff --cached --quiet || (git commit -m "content: автообновление" && git push)
       - name: Сборка
         env:
-          SITE_URL: ${{ vars.SITE_URL }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://artempiskun.github.io/vihub' }}
           TELEGRAM_URL: ${{ vars.TELEGRAM_URL }}
           YOUTUBE_URL: ${{ vars.YOUTUBE_URL }}
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
@@ -57,9 +57,9 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
       - name: IndexNow (Яндекс, Bing) после изменений в гайдах
-        if: github.event_name == 'push' && vars.SITE_URL != ''
+        if: github.event_name == 'push'
         env:
-          SITE_URL: ${{ vars.SITE_URL }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://artempiskun.github.io/vihub' }}
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
           [ -z "$INDEXNOW_KEY" ] && exit 0
