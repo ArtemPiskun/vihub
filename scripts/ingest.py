@@ -328,7 +328,11 @@ OG_RE = re.compile(r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image)
 OG_RE2 = re.compile(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]*(?:property|name)=["\'](?:og:image|twitter:image)["\']', re.I)
 
 
-def enrich_images(items, limit=30):
+BROWSER_UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                            "(KHTML, like Gecko) Chrome/124.0 Safari/537.36", "Accept": "text/html"}
+
+
+def enrich_images(items, limit=40):
     """Берёт og:image со страницы статьи для новостей без картинки."""
     n = 0
     for it in items:
@@ -338,7 +342,7 @@ def enrich_images(items, limit=30):
             continue
         n += 1
         try:
-            req = urllib.request.Request(it["url"], headers=UA)
+            req = urllib.request.Request(it["url"], headers=BROWSER_UA)
             with urllib.request.urlopen(req, timeout=8) as r:
                 page = r.read(300_000).decode("utf-8", "ignore")
             m = OG_RE.search(page) or OG_RE2.search(page)
@@ -373,6 +377,10 @@ def main():
         else:
             by_url[it["url"]] = it
     merged = [i for i in by_url.values() if (NOW - parse_date(i.get("published"))).days <= 30]
+    # одна и та же статья из Google News и из RSS издания: оставляем прямую ссылку (с картинкой)
+    key = lambda i: re.sub(r"\W+", "", re.sub(r"\s+[-–|]\s+[^-–|]+$", "", i.get("title_orig") or i["title"]).lower())[:60]
+    direct = {key(i) for i in merged if "news.google.com" not in i["url"]}
+    merged = [i for i in merged if "news.google.com" not in i["url"] or key(i) not in direct]
     enrich_images(merged)
     translate(merged)
     translate_uk(merged)

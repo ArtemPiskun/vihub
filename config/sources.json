@@ -47,6 +47,83 @@
       "type": "media",
       "weight": 0.7,
       "filter": true
+    },
+    {
+      "name": "PC Gamer",
+      "url": "https://www.pcgamer.com/rss/",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "GamesRadar+",
+      "url": "https://www.gamesradar.com/rss/",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "Eurogamer",
+      "url": "https://www.eurogamer.net/feed",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "VGC",
+      "url": "https://www.videogameschronicle.com/feed/",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "Push Square",
+      "url": "https://www.pushsquare.com/feeds/latest",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "Pure Xbox",
+      "url": "https://www.purexbox.com/feeds/latest",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "Kotaku",
+      "url": "https://kotaku.com/rss",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "GameSpot",
+      "url": "https://www.gamespot.com/feeds/news/",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "IGN",
+      "url": "https://feeds.feedburner.com/ign/news",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "StopGame",
+      "url": "https://rss.stopgame.ru/rss_news.xml",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
+    },
+    {
+      "name": "iXBT Games",
+      "url": "https://www.ixbt.com/export/games.rss",
+      "type": "media",
+      "weight": 0.6,
+      "filter": true
     }
   ],
   "youtube_channels": [
