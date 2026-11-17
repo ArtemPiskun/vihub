@@ -260,7 +260,10 @@ def translate(items):
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=120) as r:
-            text = json.loads(r.read())["content"][0]["text"]
+            resp = json.loads(r.read())
+            text = "".join(b.get("text", "") for b in resp.get("content", []) if b.get("type") == "text")
+            if not text:
+                raise ValueError(f"no text block, stop={resp.get('stop_reason')} types={[b.get('type') for b in resp.get('content', [])]}")
         arr = json.loads(text[text.index("["): text.rindex("]") + 1])
     except Exception as ex:  # noqa: BLE001
         log(f"! translate: {ex}")
@@ -288,7 +291,10 @@ def translate_uk(items):
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=120) as r:
-            text = json.loads(r.read())["content"][0]["text"]
+            resp = json.loads(r.read())
+            text = "".join(b.get("text", "") for b in resp.get("content", []) if b.get("type") == "text")
+            if not text:
+                raise ValueError(f"no text block, stop={resp.get('stop_reason')} types={[b.get('type') for b in resp.get('content', [])]}")
         arr = json.loads(text[text.index("["): text.rindex("]") + 1])
     except Exception as ex:  # noqa: BLE001
         log(f"! translate_uk: {ex}")
