@@ -381,6 +381,8 @@ def main():
     key = lambda i: re.sub(r"\W+", "", re.sub(r"\s+[-–|]\s+[^-–|]+$", "", i.get("title_orig") or i["title"]).lower())[:60]
     direct = {key(i) for i in merged if "news.google.com" not in i["url"]}
     merged = [i for i in merged if "news.google.com" not in i["url"] or key(i) not in direct]
+    # ссылки Google News без картинки держим 3 дня, прямые статьи изданий 30 дней
+    merged = [i for i in merged if "news.google.com" not in i["url"] or (NOW - parse_date(i.get("published"))).days <= 3]
     enrich_images(merged)
     translate(merged)
     translate_uk(merged)

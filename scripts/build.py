@@ -611,7 +611,7 @@ def build_lang(ctx, game, news_all, trending, channels, guides, guide_alts, writ
     rel = depth_rel(out)
     L = rel + P
     hot = sorted([n for n in news if (now - n["_dt"]).days < 7], key=lambda n: n.get("score", 0), reverse=True)
-    lead = hot[0] if hot else (news[0] if news else None)
+    lead = next((n for n in hot[:5] if n.get("image")), hot[0] if hot else (news[0] if news else None))
     rest = [n for n in news if n is not lead][:9]
     facts = "".join(f'<div class="fact"><span>{e(f["k"])}</span><b>{e(f["v"])}</b></div>' for f in game.get("facts", [])[:6])
     unlock = "".join(f'<li><b>{e(u["where"])}</b><span>{e(u["when"])}</span></li>' for u in game.get("unlock_times", []))
