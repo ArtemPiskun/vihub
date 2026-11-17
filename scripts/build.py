@@ -7,6 +7,7 @@
 import argparse
 import datetime as dt
 import glob
+import hashlib
 import html
 import json
 import os
@@ -489,14 +490,23 @@ def page(ctx, out_path, title, body, desc, alternates=None, og_type="website", l
 def news_card(ctx, it, big=False):
     t = ctx.t
     cat, st, img = it.get("category", "news"), it.get("source_type", "media"), it.get("image") or ""
-    thumb = (f'<div class="thumb" style="background-image:url(\'{e(img)}\')" role="img" aria-label="{e(it["title"])}"></div>' if img
-             else f'<div class="thumb thumb-{e(cat)}"><span>{e(t["cats"].get(cat, cat))}</span></div>')
+    pal = int(hashlib.md5((it.get("id") or it.get("url") or it["title"]).encode()).hexdigest(), 16) % 4
+    src_name = (it.get("source") or "").strip()[:28]
+    cover = (f'<div class="cv-sun" aria-hidden="true"></div><span class="cv-logo">VI<em>HUB</em></span>'
+             f'<span class="cv-cat">{e(t["cats"].get(cat, cat))}</span><b class="cv-src">{e(src_name or "GTA 6")}</b>')
+    photo = (f'<img src="{e(img)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">' if img else "")
+    thumb = f'<div class="thumb cover cv-{pal}">{cover}{photo}</div>'
     badges = f'<span class="badge b-{e(st)}">{e(t["src"].get(st, st))}</span>'
     if (it.get("score") or 0) >= 80:
         badges += f'<span class="badge b-hot">{t["hot"]}</span>'
     if it.get("verified") is False:
         badges += f'<span class="badge b-leak">{t["unverified"]}</span>'
     tag = "h2" if big else "h3"
+    summ = (it.get("summary") or "").strip()
+    norm = lambda x: re.sub(r"\W+", "", x.lower())
+    if summ and (norm(summ).startswith(norm(it["title"])[:40]) or len(summ) < 25):
+        summ = ""
+    it = dict(it, summary=summ)
     return f"""<article class="card news{' big' if big else ''}" data-cat="{e(cat)}">
   <a class="card-link" href="{e(it.get('url', '#'))}" target="_blank" rel="noopener nofollow">
   {thumb}
@@ -620,7 +630,7 @@ def build_lang(ctx, game, news_all, trending, channels, guides, guide_alts, writ
 </section>
 <section class="wrap block">
   <div class="block-head"><h2>{t['now']}</h2><a href="{L}news/">{t['all_news']}</a></div>
-  <div class="grid news-grid">{news_card(ctx, lead, big=True) if lead else ''}{''.join(news_card(ctx, n) for n in rest[:4])}</div>
+  <div class="grid news-grid">{news_card(ctx, lead, big=True) if lead else ''}{''.join(news_card(ctx, n) for n in rest[:5])}</div>
 </section>
 <section class="wrap block split">
   <div><div class="block-head"><h2>{t['unlock']}</h2><a href="{L}game/">{t['about']}</a></div><ul class="unlock">{unlock}</ul><div class="facts">{facts}</div></div>
@@ -635,7 +645,7 @@ def build_lang(ctx, game, news_all, trending, channels, guides, guide_alts, writ
   <div class="grid guide-grid">{''.join(guide_card(ctx, g, rel) for g in guides[:6])}</div>
 </section>
 <section class="wrap block"><h2 class="mt0">{t['faq']}</h2><div class="faq">{faq_block(game.get('faq', []))}</div></section>
-{f'<section class="wrap block"><div class="block-head"><h2>{t["more_news"]}</h2></div><div class="grid news-grid small">' + ''.join(news_card(ctx, n) for n in rest[4:10]) + '</div></section>' if len(rest) > 4 else ''}
+{f'<section class="wrap block"><div class="block-head"><h2>{t["more_news"]}</h2></div><div class="grid news-grid small">' + ''.join(news_card(ctx, n) for n in rest[5:11]) + '</div></section>' if len(rest) > 5 else ''}
 <section class="wrap block tg-cta"><div><h2>{t['tg_h']}</h2><p>{t['tg_p']}</p></div><a class="btn" href="{TELEGRAM_URL}" target="_blank" rel="noopener">{t['subscribe']}</a></section>
 """
     site_ld = {"@context": "https://schema.org", "@type": "WebSite", "name": SITE_NAME, "inLanguage": lang,

@@ -226,3 +226,26 @@ a.card:hover{transform:translateY(-2px);border-color:#43396a}
 .nav .langs .lang{border:0;border-radius:0;padding:8px 9px;font-weight:700;font-size:12px;letter-spacing:.06em}
 .langs .cur{background:var(--card2);color:var(--text);padding:8px 9px;font-weight:700;font-size:12px;letter-spacing:.06em}
 @media (max-width:760px){.langs{align-self:flex-start;margin:8px 0 0}}
+/* фирменные обложки вместо пустых блоков */
+.cover{position:relative;overflow:hidden;display:block;padding:0}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.cv-0{background:radial-gradient(120% 90% at 85% 120%,#ff3e9a 0,transparent 60%),linear-gradient(135deg,#1c0f2e,#3b1640)}
+.cv-1{background:radial-gradient(120% 90% at 85% 120%,#ff9a3c 0,transparent 60%),linear-gradient(135deg,#1b1030,#4a1a3a)}
+.cv-2{background:radial-gradient(120% 90% at 85% 120%,#2de2d0 0,transparent 55%),linear-gradient(135deg,#0d1a2b,#16304a)}
+.cv-3{background:radial-gradient(120% 90% at 85% 120%,#8b5cf6 0,transparent 60%),linear-gradient(135deg,#120f24,#2b1b52)}
+.cv-sun{position:absolute;right:-18%;bottom:-55%;width:70%;aspect-ratio:1;border-radius:50%;
+  background:repeating-linear-gradient(180deg,transparent 0 9%,rgba(11,10,18,.85) 9% 12.5%),var(--grad);opacity:.75;
+  -webkit-mask:linear-gradient(180deg,#000 35%,transparent 95%);mask:linear-gradient(180deg,#000 35%,transparent 95%)}
+.cv-2 .cv-sun{background:repeating-linear-gradient(180deg,transparent 0 9%,rgba(11,10,18,.85) 9% 12.5%),linear-gradient(100deg,#2de2d0,#8b5cf6)}
+.cv-logo{position:absolute;left:14px;top:12px;font:800 13px var(--h);letter-spacing:.04em;color:#fff;opacity:.9}
+.cv-logo em{font-style:normal;font-size:9px;letter-spacing:.2em;margin-left:4px;opacity:.8}
+.cv-cat{position:absolute;left:14px;bottom:42px;font:600 11px var(--b);letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.cv-src{position:absolute;left:14px;right:40%;bottom:14px;font:800 clamp(15px,1.6vw,20px)/1.1 var(--h);color:#fff;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.big .cv-src{font-size:clamp(22px,3vw,34px);bottom:22px}
+.big .cv-cat{bottom:64px;font-size:13px}
+.big .cv-logo{font-size:16px}
+/* большая карточка: обложка растягивается вместо пустоты снизу */
+.news-grid .big .card-link{height:100%}
+.news-grid .big .thumb{flex:1;min-height:240px;aspect-ratio:auto}
+.news-grid .big .card-body{flex:0 0 auto}

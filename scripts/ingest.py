@@ -86,6 +86,8 @@ def score(weight, published, bonus=0):
 
 
 def make_item(title, url, summary, source, stype, published, weight, image="", cat=None):
+    if re.sub(r"\W+", "", summary.lower()).startswith(re.sub(r"\W+", "", title.lower())[:40]):
+        summary = ""
     text = f"{title} {summary}"
     c = cat or classify(text)
     return {
@@ -296,6 +298,32 @@ def translate_uk(items):
         it["title_uk"], it["summary_uk"] = t.get("title") or "", t.get("summary") or ""
 
 
+OG_RE = re.compile(r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image)(?::src)?["\'][^>]*content=["\']([^"\']+)', re.I)
+OG_RE2 = re.compile(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]*(?:property|name)=["\'](?:og:image|twitter:image)["\']', re.I)
+
+
+def enrich_images(items, limit=30):
+    """Берёт og:image со страницы статьи для новостей без картинки."""
+    n = 0
+    for it in items:
+        if n >= limit:
+            break
+        if it.get("image") or it.get("_noimg") or "news.google.com" in it.get("url", ""):
+            continue
+        n += 1
+        try:
+            req = urllib.request.Request(it["url"], headers=UA)
+            with urllib.request.urlopen(req, timeout=8) as r:
+                page = r.read(300_000).decode("utf-8", "ignore")
+            m = OG_RE.search(page) or OG_RE2.search(page)
+            if m and m.group(1).startswith("http"):
+                it["image"] = unescape(m.group(1))
+            else:
+                it["_noimg"] = True
+        except Exception:  # noqa: BLE001
+            it["_noimg"] = True
+
+
 def file_age_h(name):
     p = os.path.join(CONTENT, name)
     if not os.path.exists(p):
@@ -319,6 +347,7 @@ def main():
         else:
             by_url[it["url"]] = it
     merged = [i for i in by_url.values() if (NOW - parse_date(i.get("published"))).days <= 30]
+    enrich_images(merged)
     translate(merged)
     translate_uk(merged)
     merged.sort(key=lambda i: i.get("published", ""), reverse=True)
