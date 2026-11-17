@@ -16,7 +16,9 @@
     "score": 95,
     "verified": true,
     "title_en": "What time does GTA 6 unlock? Release times by region",
-    "summary_en": "GTA 6 unlocks at midnight on November 19 in your store's region. Xbox players can start earlier thanks to the global store."
+    "summary_en": "GTA 6 unlocks at midnight on November 19 in your store's region. Xbox players can start earlier thanks to the global store.",
+    "title_uk": "О котрій виходить GTA 6: час розблокування за регіонами",
+    "summary_uk": "Реліз 19 листопада опівночі за місцевим часом магазину. На Xbox гра відкривається раніше завдяки єдиному глобальному магазину."
   },
   {
     "id": "seed-preload",
@@ -34,7 +36,9 @@
     "score": 80,
     "verified": true,
     "title_en": "GTA 6 preload is live: the game takes up to 212 GB",
-    "summary_en": "Preorder owners can download the game now. PS5 preload started at local midnight, Xbox at 12:00 AM GMT."
+    "summary_en": "Preorder owners can download the game now. PS5 preload started at local midnight, Xbox at 12:00 AM GMT.",
+    "title_uk": "Попереднє завантаження GTA 6 відкрите: гра важить до 212 ГБ",
+    "summary_uk": "Власники передзамовлення вже можуть завантажити гру. На PS5 старт опівночі за регіоном, на Xbox о 00:00 GMT."
   },
   {
     "id": "seed-launch-trailer",
@@ -52,7 +56,9 @@
     "score": 85,
     "verified": true,
     "title_en": "Rockstar releases the GTA 6 launch trailer and confirms the date",
-    "summary_en": "The final GTA VI trailer arrived on October 15 and locked in November 19, 2026."
+    "summary_en": "The final GTA VI trailer arrived on October 15 and locked in November 19, 2026.",
+    "title_uk": "Rockstar випустила релізний трейлер і підтвердила дату",
+    "summary_uk": "15 жовтня вийшов фінальний трейлер GTA VI, дату 19 листопада 2026 підтверджено."
   },
   {
     "id": "seed-extended-look",
@@ -70,7 +76,9 @@
     "score": 70,
     "verified": true,
     "title_en": "GTA VI: An Extended Look premieres on Netflix and YouTube",
-    "summary_en": "An extended look at gameplay and Leonida, first on Netflix, then on YouTube and Rockstar's site six hours later."
+    "summary_en": "An extended look at gameplay and Leonida, first on Netflix, then on YouTube and Rockstar's site six hours later.",
+    "title_uk": "GTA VI: An Extended Look вийшов на Netflix і YouTube",
+    "summary_uk": "Розширений показ геймплею та світу Леоніди: прем'єра на Netflix, через шість годин на YouTube і офіційному сайті."
   },
   {
     "id": "seed-preorders",
@@ -89,7 +97,9 @@
     "score": 60,
     "verified": true,
     "title_en": "GTA 6 preorders open: $79.99 Standard, $99.99 Ultimate",
-    "summary_en": "All purchases before November 20 get the Vintage Vice City Pack; digital preorders add a month of GTA+."
+    "summary_en": "All purchases before November 20 get the Vintage Vice City Pack; digital preorders add a month of GTA+.",
+    "title_uk": "Передзамовлення відкрито: Standard за $79.99 і Ultimate за $99.99",
+    "summary_uk": "Усі покупки до 20 листопада отримують Vintage Vice City Pack, цифрові ще й місяць GTA+."
   },
   {
     "id": "seed-delay-nov",
@@ -107,6 +117,8 @@
     "score": 40,
     "verified": true,
     "title_en": "Official: GTA 6 launches November 19, 2026",
-    "summary_en": "Rockstar moved the launch from May 26 to November 19, 2026 to deliver the quality players expect."
+    "summary_en": "Rockstar moved the launch from May 26 to November 19, 2026 to deliver the quality players expect.",
+    "title_uk": "Офіційно: GTA 6 вийде 19 листопада 2026",
+    "summary_uk": "Rockstar перенесла реліз з 26 травня на 19 листопада 2026, щоб довести гру до потрібного рівня якості."
   }
 ]

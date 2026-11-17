@@ -269,6 +269,33 @@ def translate(items):
         it["title"], it["summary"], it["_tr"] = t.get("title") or it["title"], t.get("summary") or it["summary"], True
 
 
+def translate_uk(items):
+    """Украинские заголовки для /uk/ (title_uk, summary_uk) через Claude API, если задан ключ."""
+    key = os.environ.get("ANTHROPIC_API_KEY")
+    todo = [i for i in items if not i.get("title_uk")][:40]
+    if not key or not todo:
+        return
+    payload = [{"i": n, "title": i.get("title_orig") or i["title"], "summary": i.get("summary_orig") or i["summary"]} for n, i in enumerate(todo)]
+    prompt = ("Переклади українською заголовки й короткі описи новин про GTA 6 для ігрового порталу. "
+              "Заголовок до 110 символів, без клікбейту й вигаданих фактів; опис 1-2 речення. "
+              "Назви: Леоніда, Вайс-Сіті, Лусія, Джейсон. Відповідай лише JSON-масивом [{\"i\":..,\"title\":..,\"summary\":..}].\n\n"
+              + json.dumps(payload, ensure_ascii=False))
+    body = json.dumps({"model": os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5"), "max_tokens": 8000,
+                       "messages": [{"role": "user", "content": prompt}]}).encode()
+    req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body, headers={
+        "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            text = json.loads(r.read())["content"][0]["text"]
+        arr = json.loads(text[text.index("["): text.rindex("]") + 1])
+    except Exception as ex:  # noqa: BLE001
+        log(f"! translate_uk: {ex}")
+        return
+    for t in arr:
+        it = todo[int(t["i"])]
+        it["title_uk"], it["summary_uk"] = t.get("title") or "", t.get("summary") or ""
+
+
 def file_age_h(name):
     p = os.path.join(CONTENT, name)
     if not os.path.exists(p):
@@ -293,6 +320,7 @@ def main():
             by_url[it["url"]] = it
     merged = [i for i in by_url.values() if (NOW - parse_date(i.get("published"))).days <= 30]
     translate(merged)
+    translate_uk(merged)
     merged.sort(key=lambda i: i.get("published", ""), reverse=True)
     merged = merged[:300]
     with open(path, "w", encoding="utf-8") as f:

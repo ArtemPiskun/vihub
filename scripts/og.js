@@ -25,7 +25,13 @@ const pages = [
   { name: 'en-videos', title: 'Trending GTA 6 videos', kicker: 'Videos' },
   { name: 'en-creators', title: 'Top GTA 6 YouTubers', kicker: 'Creators' },
   { name: 'en-game', title: 'GTA 6 release date, price, map', kicker: 'The game' },
-  ...guides('ru'), ...guides('en'),
+  { name: 'uk-home', title: 'GTA 6: усе про Леоніду в одному місці', kicker: 'Реліз 19 листопада 2026' },
+  { name: 'uk-news', title: 'Новини GTA 6 кожні 15 хвилин', kicker: 'Новини' },
+  { name: 'uk-guides', title: 'Гайди та проходження GTA 6', kicker: 'Гайди' },
+  { name: 'uk-videos', title: 'Що стріляє на YouTube про GTA 6', kicker: 'Відео' },
+  { name: 'uk-creators', title: 'Рейтинг блогерів GTA 6', kicker: 'Рейтинг' },
+  { name: 'uk-game', title: 'GTA 6: дата, ціна, карта, персонажі', kicker: 'Про гру' },
+  ...guides('ru'), ...guides('en'), ...guides('uk'),
 ];
 const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const tpl = p => `<!doctype html><html><head><meta charset="utf-8">

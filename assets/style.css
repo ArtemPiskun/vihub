@@ -221,3 +221,8 @@ a.card:hover{transform:translateY(-2px);border-color:#43396a}
   .tg-x{background:none;border:0;color:var(--muted);font-size:22px;padding:4px 6px;cursor:pointer}
   body{padding-bottom:64px}
 }
+
+.langs{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-left:4px}
+.nav .langs .lang{border:0;border-radius:0;padding:8px 9px;font-weight:700;font-size:12px;letter-spacing:.06em}
+.langs .cur{background:var(--card2);color:var(--text);padding:8px 9px;font-weight:700;font-size:12px;letter-spacing:.06em}
+@media (max-width:760px){.langs{align-self:flex-start;margin:8px 0 0}}

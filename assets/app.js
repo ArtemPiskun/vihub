@@ -7,15 +7,16 @@
   // обратный отсчёт до полуночи 19 ноября по местному времени зрителя
   var W = {
     ru: { d: ['день', 'дня', 'дней'], h: ['час', 'часа', 'часов'], m: ['минута', 'минуты', 'минут'], s: ['секунда', 'секунды', 'секунд'] },
-    en: { d: ['day', 'days'], h: ['hour', 'hours'], m: ['minute', 'minutes'], s: ['second', 'seconds'] }
+    en: { d: ['day', 'days'], h: ['hour', 'hours'], m: ['minute', 'minutes'], s: ['second', 'seconds'] },
+    uk: { d: ['день', 'дні', 'днів'], h: ['година', 'години', 'годин'], m: ['хвилина', 'хвилини', 'хвилин'], s: ['секунда', 'секунди', 'секунд'] }
   };
   function form(lang, k, v) {
     if (lang === 'en') return W.en[k][v === 1 ? 0 : 1];
     var n = v % 100, n1 = n % 10;
-    return W.ru[k][(n > 10 && n < 20) ? 2 : n1 === 1 ? 0 : (n1 > 1 && n1 < 5) ? 1 : 2];
+    return W[lang][k][(n > 10 && n < 20) ? 2 : n1 === 1 ? 0 : (n1 > 1 && n1 < 5) ? 1 : 2];
   }
   document.querySelectorAll('.countdown').forEach(function (el) {
-    var lang = el.getAttribute('data-lang') === 'en' ? 'en' : 'ru';
+    var lang = W[el.getAttribute('data-lang')] ? el.getAttribute('data-lang') : 'ru';
     var iso = el.getAttribute('data-release') || '';
     var m = iso.match(/^(\d{4})-(\d{2})-(\d{2})/);
     var target = m ? new Date(+m[1], +m[2] - 1, +m[3], 0, 0, 0) : new Date(iso);

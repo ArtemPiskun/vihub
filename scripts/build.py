@@ -21,9 +21,10 @@ DIST = os.path.join(ROOT, "dist")
 SITE_NAME = "VI HUB"
 TELEGRAM_URL = os.environ.get("TELEGRAM_URL") or "https://t.me/PIR_LIFE"
 YOUTUBE_URL = os.environ.get("YOUTUBE_URL", "")
-LANGS = ["ru", "en"]
-PREFIX = {"ru": "", "en": "en/"}
-LOCALE = {"ru": "ru_RU", "en": "en_US"}
+LANGS = ["ru", "en", "uk"]
+PREFIX = {"ru": "", "en": "en/", "uk": "uk/"}
+LOCALE = {"ru": "ru_RU", "en": "en_US", "uk": "uk_UA"}
+LANG_LABEL = {"ru": "RU", "en": "EN", "uk": "UA"}
 
 T = {
     "ru": {
@@ -67,7 +68,7 @@ T = {
         "views": "просм.", "per_h": "/ч", "updated": "Обновлено", "other_guides": "Другие гайды",
         "tags_h1": "Теги", "tag_title": "{t}: новости и гайды GTA 6", "tag_desc": "Всё по теме «{t}» в GTA 6: новости, гайды и разборы.",
         "footer": "фанатский портал о Grand Theft Auto VI. Не связан с Rockstar Games и Take-Two.",
-        "lang_switch": "EN", "play_video": "Смотреть видео",
+        "skip": "К содержанию", "toc": "Содержание", "play_video": "Смотреть видео",
         "ago": ["мин назад", "ч назад", "дн назад"],
         "cats": {"news": "Новости", "update": "Обновления", "guide": "Гайды", "video": "Видео", "leak": "Слухи"},
         "src": {"official": "Официально", "media": "СМИ", "youtube": "YouTube", "community": "Сообщество", "leak": "Слухи"},
@@ -115,20 +116,70 @@ T = {
         "views": "views", "per_h": "/h", "updated": "Updated", "other_guides": "More guides",
         "tags_h1": "Tags", "tag_title": "{t}: GTA 6 News and Guides", "tag_desc": "Everything about {t} in GTA 6: news, guides and breakdowns.",
         "footer": "fan site about Grand Theft Auto VI. Not affiliated with Rockstar Games or Take-Two.",
-        "lang_switch": "RU", "play_video": "Play video",
+        "skip": "Skip to content", "toc": "Contents", "play_video": "Play video",
         "ago": ["min ago", "h ago", "d ago"],
         "cats": {"news": "News", "update": "Updates", "guide": "Guides", "video": "Video", "leak": "Rumors"},
         "src": {"official": "Official", "media": "Press", "youtube": "YouTube", "community": "Community", "leak": "Rumor"},
         "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         "cat_order": ["Start", "Walkthrough", "World"],
     },
+    "uk": {
+        "home": "Головна", "news": "Новини", "guides": "Гайди", "videos": "Відео", "creators": "Рейтинг",
+        "game": "Про гру", "tags": "Теги", "all_news": "Усі новини →", "all_guides": "Усі гайди →",
+        "all_videos": "Усі відео →", "rating": "Рейтинг →", "about": "Усе про гру →",
+        "home_title": "GTA 6: дата виходу, новини, гайди та час релізу",
+        "home_desc": "GTA 6 виходить 19 листопада 2026. Точний час розблокування за регіонами, ціна, розмір, гайди, проходження і свіжі новини Grand Theft Auto VI кожні 15 хвилин.",
+        "hero_eyebrow": "Grand Theft Auto VI · 19 листопада 2026",
+        "hero_h1": "GTA 6: усе про <span class=\"grad\">Леоніду</span> в одному місці",
+        "hero_lead": "GTA 6 виходить 19 листопада 2026 на PS5 та Xbox Series X|S. Тут час розблокування, ціни, гайди, проходження і найгарячіші відео, оновлення кожні 15 хвилин.",
+        "cta_main": "Чек-лист до релізу", "cta_tg": "Наш Telegram",
+        "now": "Головне зараз", "unlock": "Коли відкриється гра", "top_creators": "Топ блогерів за 24 год",
+        "hot_videos": "Що стріляє на YouTube", "guides_start": "Гайди та старт", "more_news": "Ще новини",
+        "faq": "Часті питання", "regions": "Регіони Леоніди", "characters": "Персонажі", "timeline": "Хронологія",
+        "unlock_times": "Час розблокування", "map_guide": "Гайд по карті →", "more": "Детальніше →",
+        "cd_label": "До релізу на PS5 та Xbox Series X|S", "cd_done": "GTA 6 вже вийшла. Час грати.",
+        "cd_units": ["днів", "годин", "хвилин", "секунд"],
+        "tg_h": "Новини GTA 6 у Telegram", "tg_p": "Злиття, патчі, гайди й найкращі відео раніше за всіх. Без спаму.",
+        "subscribe": "Підписатися", "hot": "🔥 Гаряче", "unverified": "Не підтверджено",
+        "news_h1": "Новини GTA 6", "news_title": "Новини GTA 6 сьогодні: патчі, злиття, офіційні анонси",
+        "news_desc": "Свіжі новини GTA 6 з офіційних джерел, медіа, YouTube і спільноти. Стрічка оновлюється автоматично кожні 15 хвилин, чутки позначені.",
+        "news_lead": "Стрічка збирається автоматично з офіційних джерел, медіа, YouTube і спільноти та оновлюється кожні 15 хвилин. Чутки мають позначку «Не підтверджено».",
+        "all": "Усі",
+        "guides_h1": "Гайди та проходження GTA 6", "guides_title": "Гайди GTA 6: проходження, поради, карта і персонажі",
+        "guides_desc": "Гайди з GTA 6: як підготуватися до релізу, яке видання купити, карта Леоніди, персонажі, поради новачкам і проходження місій.",
+        "guides_lead": "Від підготовки до релізу до повного проходження. Кожен гайд відповідає на питання в перших рядках, а після 19 листопада розділ поповнюється щодня.",
+        "videos_h1": "Найкращі відео про GTA 6", "videos_title": "Відео GTA 6: трейлери, розбори та тренди YouTube",
+        "videos_desc": "Відео про GTA 6, що найшвидше набирають перегляди на YouTube просто зараз: трейлери, розбори, геймплей. Сортування за переглядами на годину.",
+        "videos_lead": "Відео про GTA 6, які найшвидше набирають перегляди просто зараз. Ми сортуємо ролики за швидкістю переглядів на годину, а не за загальною кількістю, тож нові розбори потрапляють нагору вже за кілька годин.",
+        "creators_h1": "Рейтинг блогерів GTA 6", "creators_title": "Рейтинг YouTube-блогерів з GTA 6 за 24 години",
+        "creators_desc": "Хто зараз задає тон у темі GTA 6 на YouTube: кількість роликів за добу, перегляди на годину і підсумковий score.",
+        "creators_lead": "Рейтинг перераховується кожні 15 хвилин. Score враховує сумарні перегляди на годину по свіжих роликах каналу й невеликий бонус за регулярність: до чотирьох роликів на добу.",
+        "game_h1": "Grand Theft Auto VI: що відомо про гру",
+        "game_title": "GTA 6: дата виходу, ціна, платформи, карта і персонажі",
+        "game_desc": "Усе офіційно відоме про GTA 6: дата виходу 19 листопада 2026, ціна $79.99, розмір до 212 ГБ, карта Леоніди, Лусія і Джейсон, хронологія анонсів.",
+        "game_lead": "GTA 6 виходить 19 листопада 2026 на PS5 та Xbox Series X|S, версію для ПК не анонсовано. Нижче зібрано лише офіційно підтверджені факти.",
+        "empty_videos": "Тренди з'являться після першого запуску моніторингу YouTube.",
+        "empty_creators": "Рейтинг заповниться автоматично після першого запуску моніторингу YouTube.",
+        "th": ["#", "Канал", "Відео 24 год", "Перегл./год", "Score", "Найкраще"], "watch": "дивитися",
+        "views": "перегл.", "per_h": "/год", "updated": "Оновлено", "other_guides": "Інші гайди",
+        "tags_h1": "Теги", "tag_title": "{t}: новини та гайди GTA 6", "tag_desc": "Усе на тему «{t}» у GTA 6: новини, гайди й розбори.",
+        "footer": "фанатський портал про Grand Theft Auto VI. Не пов'язаний з Rockstar Games і Take-Two.",
+        "skip": "До змісту", "toc": "Зміст", "play_video": "Дивитися відео",
+        "ago": ["хв тому", "год тому", "дн тому"],
+        "cats": {"news": "Новини", "update": "Оновлення", "guide": "Гайди", "video": "Відео", "leak": "Чутки"},
+        "src": {"official": "Офіційно", "media": "Медіа", "youtube": "YouTube", "community": "Спільнота", "leak": "Чутки"},
+        "months": ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"],
+        "cat_order": ["Старт", "Проходження", "Світ"],
+    },
 }
 
 e = html.escape
 CYR = re.compile("[а-яА-ЯёЁ]")
-TR = dict(zip("абвгдеёжзийклмнопрстуфхцчшщъыьэюя",
+TR = {"і": "i", "ї": "yi", "є": "ye", "ґ": "g", "'": ""}
+TR.update(zip("абвгдеёжзийклмнопрстуфхцчшщъыьэюя",
               ["a", "b", "v", "g", "d", "e", "e", "zh", "z", "i", "y", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u",
                "f", "h", "ts", "ch", "sh", "sch", "", "y", "", "e", "yu", "ya"]))
+CYR = re.compile("[а-яА-ЯёЁіїєґІЇЄҐ]")
 
 
 def slugify(s):
@@ -187,7 +238,9 @@ def news_for(lang, news):
         return news
     out = []
     for n in news:
-        if n.get("lang") == "en":
+        if lang == "uk" and n.get("title_uk"):
+            out.append(dict(n, title=n["title_uk"], summary=n.get("summary_uk", "")))
+        elif n.get("lang") == "en":
             out.append(n)
         elif n.get("title_en"):
             out.append(dict(n, title=n["title_en"], summary=n.get("summary_en", "")))
@@ -199,7 +252,7 @@ def news_for(lang, news):
 
 def date_h(d, lang):
     m = T[lang]["months"][d.month - 1]
-    return f"{d.day} {m} {d.year}" if lang == "ru" else f"{m} {d.day}, {d.year}"
+    return f"{m} {d.day}, {d.year}" if lang == "en" else f"{d.day} {m} {d.year}"
 
 
 def ago(d, now, lang):
@@ -219,8 +272,8 @@ def fmt_num(n, lang):
         n = float(n)
     except (TypeError, ValueError):
         return "—"
-    k, m = ("тыс", "млн") if lang == "ru" else ("K", "M")
-    sep = " " if lang == "ru" else ""
+    k, m = {"ru": ("тыс", "млн"), "uk": ("тис", "млн")}.get(lang, ("K", "M"))
+    sep = "" if lang == "en" else " "
     if n >= 1e6:
         return f"{n / 1e6:.1f}".rstrip("0").rstrip(".") + sep + m
     if n >= 1e3:
@@ -352,17 +405,19 @@ def page(ctx, out_path, title, body, desc, alternates=None, og_type="website", l
         f'<a href="{L}{s + "/" if s else ""}"{" aria-current=\"page\"" if s == section else ""}>{n}</a>'
         for s, n in nav_items)
     alternates = alternates or {lang: out_path}
-    other = "en" if lang == "ru" else "ru"
-    switch_target = alternates.get(other) or PREFIX[other] + "index.html"
-    switch = f'<a class="lang" href="{rel}{url_of(switch_target)}" hreflang="{other}" lang="{other}">{t["lang_switch"]}</a>'
+    switch = '<span class="langs">' + "".join(
+        (f'<span class="lang cur" aria-current="true">{LANG_LABEL[lg]}</span>' if lg == lang else
+         f'<a class="lang" href="{rel}{url_of(alternates.get(lg) or PREFIX[lg] + "index.html")}" hreflang="{lg}" lang="{lg}">{LANG_LABEL[lg]}</a>')
+        for lg in LANGS) + '</span>'
     bu = ctx.base_url
     head_links = ""
     if bu:
         head_links += f'<link rel="canonical" href="{bu}/{url_of(out_path)}">\n'
         for lg, op in alternates.items():
             head_links += f'<link rel="alternate" hreflang="{lg}" href="{bu}/{url_of(op)}">\n'
-        if "ru" in alternates:
-            head_links += f'<link rel="alternate" hreflang="x-default" href="{bu}/{url_of(alternates["ru"])}">\n'
+        xd = alternates.get("en") or alternates.get("ru")
+        if xd and len(alternates) > 1:
+            head_links += f'<link rel="alternate" hreflang="x-default" href="{bu}/{url_of(xd)}">\n'
     img = og_image or "assets/og/default.jpg"
     img_abs = f"{bu}/{img}" if bu else rel + img
     ld_all = [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -405,7 +460,7 @@ def page(ctx, out_path, title, body, desc, alternates=None, og_type="website", l
 <link rel="stylesheet" href="{rel}assets/style.css">
 {ld_html}</head>
 <body>
-<a class="skip" href="#main">{"К содержанию" if lang == "ru" else "Skip to content"}</a>
+<a class="skip" href="#main">{t["skip"]}</a>
 <header class="top">
   <div class="wrap top-in">
     <a class="logo" href="{L}" aria-label="{SITE_NAME}"><span class="logo-vi">VI</span><span class="logo-hub">HUB</span></a>
@@ -534,7 +589,6 @@ def lite_video(vid, label):
 def build_lang(ctx, game, news_all, trending, channels, guides, guide_alts, write):
     t, lang, now, P = ctx.t, ctx.lang, ctx.now, PREFIX[ctx.lang]
     news = news_for(lang, news_all)
-    other = "en" if lang == "ru" else "ru"
 
     def alts(path_wo_prefix):
         return {lg: PREFIX[lg] + path_wo_prefix for lg in LANGS}
@@ -623,7 +677,7 @@ def build_lang(ctx, game, news_all, trending, channels, guides, guide_alts, writ
         alt = {lg: f"{PREFIX[lg]}guides/{s}.html" for lg, s in guide_alts.get(g["key"], {}).items()}
         alt[lang] = out
         heads = re.findall(r'<h3 id="([^"]+)">(.*?)</h3>', g["html"])
-        toc = ('<nav class="toc"><b>' + ("Содержание" if lang == "ru" else "Contents") + '</b><ol>' +
+        toc = ('<nav class="toc"><b>' + t["toc"] + '</b><ol>' +
                "".join(f'<li><a href="#{i}">{h}</a></li>' for i, h in heads) + '</ol></nav>') if len(heads) >= 3 else ""
         video = f'<div class="video-embed">{lite_video(g["video"], t["play_video"])}</div>' if g["video"] else ""
         upd = g["updated"]
@@ -694,7 +748,7 @@ def build_lang(ctx, game, news_all, trending, channels, guides, guide_alts, writ
             tagmap.setdefault(slugify(tg), {"name": tg, "guides": [], "news": []})["guides"].append(g)
     for n in news[:300]:
         for tg in n.get("tags") or []:
-            if isinstance(tg, str) and tg.strip() and not (lang == "en" and CYR.search(tg)):
+            if isinstance(tg, str) and tg.strip() and not (lang != "ru" and CYR.search(tg)):
                 tagmap.setdefault(slugify(tg), {"name": tg.strip(), "guides": [], "news": []})["news"].append(n)
     tagmap = {k: v for k, v in tagmap.items() if len(v["guides"]) + len(v["news"]) >= 1}
     for slug, tg in tagmap.items():
@@ -775,6 +829,9 @@ def build(base_url=""):
             rows.append(f"<url><loc>{base_url}/{url_of(out)}</loc><lastmod>{today}</lastmod><priority>{pr}</priority>{links}</url>")
         write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
                              'xmlns:xhtml="http://www.w3.org/1999/xhtml">' + "".join(rows) + "</urlset>")
+        host = base_url.split("/")[2]
+        if not host.endswith("github.io"):
+            write("CNAME", host + "\n")
         write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {base_url}/sitemap.xml\n")
         write("urls.txt", "\n".join(f"{base_url}/{url_of(o)}" for o, _ in all_urls))
     key = os.environ.get("INDEXNOW_KEY", "")
