@@ -1,0 +1,98 @@
+{
+  "_note": "Источники для автоимпорта. weight 0-1 влияет на score. keywords фильтруют общие ленты. youtube_channels: channel_id; ленты YouTube RSS не требуют ключа.",
+  "keywords": [
+    "gta 6",
+    "gta vi",
+    "gta6",
+    "grand theft auto vi",
+    "гта 6",
+    "гта6",
+    "leonida",
+    "vice city",
+    "леонида",
+    "вайс-сити"
+  ],
+  "feeds": [
+    {
+      "name": "Google News (EN)",
+      "url": "https://news.google.com/rss/search?q=%22GTA+6%22+OR+%22GTA+VI%22&hl=en-US&gl=US&ceid=US:en",
+      "type": "media",
+      "weight": 0.6,
+      "filter": false
+    },
+    {
+      "name": "Google News (RU)",
+      "url": "https://news.google.com/rss/search?q=GTA+6&hl=ru&gl=RU&ceid=RU:ru",
+      "type": "media",
+      "weight": 0.6,
+      "filter": false
+    },
+    {
+      "name": "Reddit r/GTA6",
+      "url": "https://www.reddit.com/r/GTA6/top/.rss?t=day",
+      "type": "community",
+      "weight": 0.4,
+      "filter": false
+    },
+    {
+      "name": "PlayGround.ru",
+      "url": "https://www.playground.ru/rss/news.xml",
+      "type": "media",
+      "weight": 0.5,
+      "filter": true
+    },
+    {
+      "name": "Rockstar Intel",
+      "url": "https://www.rockstarintel.com/feed",
+      "type": "media",
+      "weight": 0.7,
+      "filter": true
+    }
+  ],
+  "youtube_channels": [
+    {
+      "name": "Rockstar Games",
+      "channel_id": "UCmDTrq0LNgPodDOFZiSbsww",
+      "weight": 1.0,
+      "official": true
+    },
+    {
+      "name": "TGG",
+      "channel_id": "UC72PuhDwKtZ5MikpGNhPAtA",
+      "weight": 0.7
+    },
+    {
+      "name": "TmarTn2",
+      "channel_id": "UC36MGPfPwOWafAXauiV4LdA",
+      "weight": 0.6
+    },
+    {
+      "name": "GrandGecko",
+      "channel_id": "UCkF597cv6R5Sa570_CxPoTw",
+      "weight": 0.6
+    },
+    {
+      "name": "Vice City Dispatch",
+      "channel_id": "UCYzIpEDD8lpkCCPt-DR-f2g",
+      "weight": 0.6
+    },
+    {
+      "name": "IGN",
+      "channel_id": "UCKy1dAqELo0zrOtPkf0eTMw",
+      "weight": 0.6
+    },
+    {
+      "name": "King jr",
+      "channel_id": "UCRTPvo_rgGG8go3Yvhju20A",
+      "weight": 0.7,
+      "lang": "ru"
+    }
+  ],
+  "external_json": [
+    {
+      "_comment": "JSON-лента бота (news.json/trending.json/channels.json), если он публикует их по URL",
+      "url": "",
+      "weight": 0.8
+    }
+  ]
+}

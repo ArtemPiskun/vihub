@@ -1,0 +1,173 @@
+{
+  "title": "Grand Theft Auto VI",
+  "release_iso": "2026-11-19T00:00:00-05:00",
+  "release_human": "November 19, 2026",
+  "platforms": [
+    "PlayStation 5",
+    "Xbox Series X|S"
+  ],
+  "facts": [
+    {
+      "k": "Release date",
+      "v": "November 19, 2026, midnight in your store's region"
+    },
+    {
+      "k": "Platforms",
+      "v": "PS5, Xbox Series X|S (PC later, no date)"
+    },
+    {
+      "k": "Price",
+      "v": "$79.99 Standard, $99.99 Ultimate (US)"
+    },
+    {
+      "k": "File size",
+      "v": "up to ~212 GB depending on platform"
+    },
+    {
+      "k": "Setting",
+      "v": "The state of Leonida and Vice City"
+    },
+    {
+      "k": "Protagonists",
+      "v": "Lucia Caminos and Jason Duval"
+    },
+    {
+      "k": "Preload",
+      "v": "open since November 10 for preorders"
+    },
+    {
+      "k": "Preorder bonus",
+      "v": "Vintage Vice City Pack (buy before Nov 20); digital preorders get a month of GTA+"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2023-12-04",
+      "text": "Reveal and Trailer 1"
+    },
+    {
+      "date": "2025-05-02",
+      "text": "Delayed to May 26, 2026"
+    },
+    {
+      "date": "2025-05-06",
+      "text": "Trailer 2"
+    },
+    {
+      "date": "2025-11-06",
+      "text": "Delayed to November 19, 2026"
+    },
+    {
+      "date": "2026-06-25",
+      "text": "Preorders open"
+    },
+    {
+      "date": "2026-08-27",
+      "text": "GTA VI: An Extended Look premieres on Netflix"
+    },
+    {
+      "date": "2026-10-15",
+      "text": "Launch trailer"
+    },
+    {
+      "date": "2026-11-10",
+      "text": "Preload begins"
+    },
+    {
+      "date": "2026-11-19",
+      "text": "Launch on PS5 and Xbox Series X|S"
+    }
+  ],
+  "regions": [
+    {
+      "name": "Vice City",
+      "desc": "Neon metropolis, beaches, clubs and money."
+    },
+    {
+      "name": "Leonida Keys",
+      "desc": "Island chain, boats and smuggling."
+    },
+    {
+      "name": "Grassrivers",
+      "desc": "Swamps, alligators and the state's wild side."
+    },
+    {
+      "name": "Port Gellhorn",
+      "desc": "Port town with an industrial edge."
+    },
+    {
+      "name": "Ambrosia",
+      "desc": "Industrial suburb and sugar mills."
+    },
+    {
+      "name": "Mount Kalaga National Park",
+      "desc": "Forests, mountains and off-road trails up north."
+    }
+  ],
+  "characters": [
+    {
+      "name": "Lucia Caminos",
+      "desc": "The series' first female lead, out of prison and chasing a new life."
+    },
+    {
+      "name": "Jason Duval",
+      "desc": "Lucia's partner, working for small-time players in the Keys."
+    },
+    {
+      "name": "Cal Hampton",
+      "desc": "Jason's friend, a conspiracy theorist."
+    },
+    {
+      "name": "Boobie Ike",
+      "desc": "Vice City local legend and studio owner."
+    },
+    {
+      "name": "Dre'Quan Priest",
+      "desc": "Music producer."
+    },
+    {
+      "name": "Raul Bautista",
+      "desc": "Veteran bank robber."
+    },
+    {
+      "name": "Brian Heder",
+      "desc": "Old-school smuggler from the Keys."
+    }
+  ],
+  "unlock_times": [
+    {
+      "where": "PS5, US store",
+      "when": "Nov 19, 12:00 AM ET (Nov 18, 9:00 PM PT)"
+    },
+    {
+      "where": "PS5, other regions",
+      "when": "Nov 19, 12:00 AM in your PlayStation Store region"
+    },
+    {
+      "where": "Xbox (New Zealand trick)",
+      "when": "Nov 18, ~11:00 AM GMT / 6:00 AM ET / 3:00 AM PT"
+    }
+  ],
+  "faq": [
+    {
+      "q": "When does GTA 6 come out?",
+      "a": "November 19, 2026 on PS5 and Xbox Series X|S. It unlocks at midnight in your store's region; on Xbox, the New Zealand time zone trick unlocks it on November 18 around 11:00 AM GMT."
+    },
+    {
+      "q": "How much does GTA 6 cost?",
+      "a": "$79.99 for the Standard Edition and $99.99 for the Ultimate Edition in the US."
+    },
+    {
+      "q": "How big is GTA 6?",
+      "a": "Up to ~212 GB depending on platform. Leave extra space for the day-one patch."
+    },
+    {
+      "q": "Is GTA 6 coming to PC?",
+      "a": "Rockstar has not announced a PC date. At launch the game is only on PS5 and Xbox Series X|S."
+    },
+    {
+      "q": "Where is GTA 6 set?",
+      "a": "In Leonida, a fictional state based on Florida, including Vice City. The leads are Lucia Caminos and Jason Duval."
+    }
+  ]
+}

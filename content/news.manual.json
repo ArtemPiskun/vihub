@@ -1,0 +1,112 @@
+[
+  {
+    "id": "seed-release-times",
+    "title": "Во сколько выходит GTA 6: время разблокировки по регионам",
+    "summary": "Релиз 19 ноября в полночь по местному времени магазина. На Xbox игра открывается раньше благодаря единому глобальному магазину.",
+    "url": "https://gamesradar.com/games/grand-theft-auto/gta-6-release-time",
+    "source": "GamesRadar+",
+    "source_type": "media",
+    "category": "news",
+    "published": "2026-11-17T12:00:00Z",
+    "image": "",
+    "tags": [
+      "релиз",
+      "время"
+    ],
+    "score": 95,
+    "verified": true,
+    "title_en": "What time does GTA 6 unlock? Release times by region",
+    "summary_en": "GTA 6 unlocks at midnight on November 19 in your store's region. Xbox players can start earlier thanks to the global store."
+  },
+  {
+    "id": "seed-preload",
+    "title": "Предзагрузка GTA 6 открыта: игра весит до 212 ГБ",
+    "summary": "Владельцы предзаказа уже могут скачать игру. На PS5 предзагрузка стартовала в полночь по региону, на Xbox в 00:00 GMT.",
+    "url": "https://rockstarreport.com/features/gta-6-release-date-tracker",
+    "source": "Rockstar Report",
+    "source_type": "media",
+    "category": "update",
+    "published": "2026-11-10T00:00:00Z",
+    "image": "",
+    "tags": [
+      "предзагрузка"
+    ],
+    "score": 80,
+    "verified": true,
+    "title_en": "GTA 6 preload is live: the game takes up to 212 GB",
+    "summary_en": "Preorder owners can download the game now. PS5 preload started at local midnight, Xbox at 12:00 AM GMT."
+  },
+  {
+    "id": "seed-launch-trailer",
+    "title": "Rockstar выпустила релизный трейлер и подтвердила дату",
+    "summary": "15 октября вышел финальный трейлер GTA VI, дата 19 ноября 2026 подтверждена.",
+    "url": "https://www.rockstargames.com/newswire",
+    "source": "Rockstar Newswire",
+    "source_type": "official",
+    "category": "video",
+    "published": "2026-10-15T15:00:00Z",
+    "image": "",
+    "tags": [
+      "трейлер"
+    ],
+    "score": 85,
+    "verified": true,
+    "title_en": "Rockstar releases the GTA 6 launch trailer and confirms the date",
+    "summary_en": "The final GTA VI trailer arrived on October 15 and locked in November 19, 2026."
+  },
+  {
+    "id": "seed-extended-look",
+    "title": "GTA VI: An Extended Look вышел на Netflix и YouTube",
+    "summary": "Расширенный показ геймплея и мира Леониды: премьера на Netflix, через шесть часов на YouTube и официальном сайте.",
+    "url": "https://www.rockstargames.com/newswire",
+    "source": "Rockstar Newswire",
+    "source_type": "official",
+    "category": "video",
+    "published": "2026-08-27T19:00:00Z",
+    "image": "",
+    "tags": [
+      "геймплей"
+    ],
+    "score": 70,
+    "verified": true,
+    "title_en": "GTA VI: An Extended Look premieres on Netflix and YouTube",
+    "summary_en": "An extended look at gameplay and Leonida, first on Netflix, then on YouTube and Rockstar's site six hours later."
+  },
+  {
+    "id": "seed-preorders",
+    "title": "Предзаказы открыты: Standard за $79.99 и Ultimate за $99.99",
+    "summary": "Все предзаказы до 20 ноября получают Vintage Vice City Pack, цифровые дополнительно месяц GTA+.",
+    "url": "https://rockstarreport.com/features/gta-6-release-date-tracker",
+    "source": "Rockstar Report",
+    "source_type": "media",
+    "category": "news",
+    "published": "2026-06-25T13:00:00Z",
+    "image": "",
+    "tags": [
+      "предзаказ",
+      "цена"
+    ],
+    "score": 60,
+    "verified": true,
+    "title_en": "GTA 6 preorders open: $79.99 Standard, $99.99 Ultimate",
+    "summary_en": "All purchases before November 20 get the Vintage Vice City Pack; digital preorders add a month of GTA+."
+  },
+  {
+    "id": "seed-delay-nov",
+    "title": "Официально: GTA 6 выйдет 19 ноября 2026",
+    "summary": "Rockstar перенесла релиз с 26 мая на 19 ноября 2026, чтобы довести игру до нужного уровня качества.",
+    "url": "https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026",
+    "source": "Rockstar Newswire",
+    "source_type": "official",
+    "category": "news",
+    "published": "2025-11-06T21:00:00Z",
+    "image": "",
+    "tags": [
+      "дата"
+    ],
+    "score": 40,
+    "verified": true,
+    "title_en": "Official: GTA 6 launches November 19, 2026",
+    "summary_en": "Rockstar moved the launch from May 26 to November 19, 2026 to deliver the quality players expect."
+  }
+]
