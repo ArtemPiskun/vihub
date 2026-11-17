@@ -249,3 +249,33 @@ a.card:hover{transform:translateY(-2px);border-color:#43396a}
 .news-grid .big .card-link{height:100%}
 .news-grid .big .thumb{flex:1;min-height:240px;aspect-ratio:auto}
 .news-grid .big .card-body{flex:0 0 auto}
+
+/* сцены Vice City для запасных обложек (scripts/covers.py) */
+.sc{background-size:cover;background-position:center}
+.sc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,18,.15) 0,rgba(11,10,18,0) 35%,rgba(11,10,18,.78) 100%);z-index:0}
+.sc>span,.sc>b{z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.sc-00{background-image:url(covers/c00.jpg)}
+.sc-01{background-image:url(covers/c01.jpg)}
+.sc-02{background-image:url(covers/c02.jpg)}
+.sc-03{background-image:url(covers/c03.jpg)}
+.sc-04{background-image:url(covers/c04.jpg)}
+.sc-05{background-image:url(covers/c05.jpg)}
+.sc-06{background-image:url(covers/c06.jpg)}
+.sc-07{background-image:url(covers/c07.jpg)}
+.sc-08{background-image:url(covers/c08.jpg)}
+.sc-09{background-image:url(covers/c09.jpg)}
+.sc-10{background-image:url(covers/c10.jpg)}
+.sc-11{background-image:url(covers/c11.jpg)}
+.sc-12{background-image:url(covers/c12.jpg)}
+.sc-13{background-image:url(covers/c13.jpg)}
+.sc-14{background-image:url(covers/c14.jpg)}
+.sc-15{background-image:url(covers/c15.jpg)}
+.sc-16{background-image:url(covers/c16.jpg)}
+.sc-17{background-image:url(covers/c17.jpg)}
+.sc-18{background-image:url(covers/c18.jpg)}
+.sc-19{background-image:url(covers/c19.jpg)}
+.sc-20{background-image:url(covers/c20.jpg)}
+.sc-21{background-image:url(covers/c21.jpg)}
+.sc-22{background-image:url(covers/c22.jpg)}
+.sc-23{background-image:url(covers/c23.jpg)}
+.sc .cv-src{right:14px}

@@ -490,12 +490,13 @@ def page(ctx, out_path, title, body, desc, alternates=None, og_type="website", l
 def news_card(ctx, it, big=False):
     t = ctx.t
     cat, st, img = it.get("category", "news"), it.get("source_type", "media"), it.get("image") or ""
-    pal = int(hashlib.md5((it.get("id") or it.get("url") or it["title"]).encode()).hexdigest(), 16) % 4
+    h = int(hashlib.md5((it.get("id") or it.get("url") or it["title"]).encode()).hexdigest(), 16)
+    pal, scene = h % 4, (h // 4) % 24
     src_name = (it.get("source") or "").strip()[:28]
-    cover = (f'<div class="cv-sun" aria-hidden="true"></div><span class="cv-logo">VI<em>HUB</em></span>'
+    cover = (f'<span class="cv-logo">VI<em>HUB</em></span>'
              f'<span class="cv-cat">{e(t["cats"].get(cat, cat))}</span><b class="cv-src">{e(src_name or "GTA 6")}</b>')
     photo = (f'<img src="{e(img)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">' if img else "")
-    thumb = f'<div class="thumb cover cv-{pal}">{cover}{photo}</div>'
+    thumb = f'<div class="thumb cover cv-{pal} sc sc-{scene:02d}">{cover}{photo}</div>'
     badges = f'<span class="badge b-{e(st)}">{e(t["src"].get(st, st))}</span>'
     if (it.get("score") or 0) >= 80:
         badges += f'<span class="badge b-hot">{t["hot"]}</span>'
