@@ -242,66 +242,86 @@ def ingest_external():
         return []
 
 
-def translate(items):
-    """Переводит/пересказывает не-русские заголовки через Claude API (если задан ключ)."""
+def claude_json(prompt, tag):
+    """Запрос к Claude API, возвращает JSON-массив из ответа или None (с понятной ошибкой в логе)."""
     key = os.environ.get("ANTHROPIC_API_KEY")
-    todo = [i for i in items if not re.search("[а-яА-ЯёЁ]", i["title"]) and not i.get("_tr")]
-    if not key or not todo:
-        return
-    todo = todo[:40]
-    payload = [{"i": n, "title": i["title"], "summary": i["summary"]} for n, i in enumerate(todo)]
-    prompt = ("Переведи на русский заголовки и краткие описания новостей о GTA 6 для игрового портала. "
-              "Заголовок до 110 символов, живой, без кликбейта и без выдуманных фактов; описание 1-2 предложения. "
-              "Названия оставь как принято у русскоязычных игроков (Леонида, Вайс-Сити, Лусия, Джейсон). "
-              "Ответь только JSON-массивом [{\"i\":..,\"title\":..,\"summary\":..}].\n\n" + json.dumps(payload, ensure_ascii=False))
-    body = json.dumps({"model": os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5"), "max_tokens": 8000,
+    body = json.dumps({"model": os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5"), "max_tokens": 6000,
                        "messages": [{"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"})
+    text = ""
     try:
         with urllib.request.urlopen(req, timeout=120) as r:
             resp = json.loads(r.read())
-            text = "".join(b.get("text", "") for b in resp.get("content", []) if b.get("type") == "text")
-            if not text:
-                raise ValueError(f"no text block, stop={resp.get('stop_reason')} types={[b.get('type') for b in resp.get('content', [])]}")
-        arr = json.loads(text[text.index("["): text.rindex("]") + 1])
+        text = "".join(b.get("text", "") for b in resp.get("content", []) if b.get("type") == "text")
+        m = re.search(r"\[.*\]", text, re.S)
+        if not m:
+            raise ValueError(f"нет JSON-массива, stop={resp.get('stop_reason')}, ответ: {text[:200]!r}")
+        return json.loads(m.group(0))
+    except urllib.error.HTTPError as ex:
+        log(f"! {tag}: HTTP {ex.code} {ex.read()[:300]!r}")
     except Exception as ex:  # noqa: BLE001
-        log(f"! translate: {ex}")
+        log(f"! {tag}: {ex}")
+    return None
+
+
+def _batches(todo, size=10):
+    for n in range(0, len(todo), size):
+        yield todo[n:n + size]
+
+
+def translate(items, limit=40):
+    """Переводит не-русские заголовки на русский через Claude API (если задан ключ)."""
+    if not os.environ.get("ANTHROPIC_API_KEY"):
         return
-    for t in arr:
-        it = todo[int(t["i"])]
-        it["title_orig"], it["summary_orig"] = it["title"], it["summary"]
-        it["title"], it["summary"], it["_tr"] = t.get("title") or it["title"], t.get("summary") or it["summary"], True
+    todo = [i for i in items if not re.search("[а-яА-ЯёЁ]", i["title"]) and not i.get("_tr")][:limit]
+    done = 0
+    for batch in _batches(todo):
+        payload = [{"i": n, "title": i["title"], "summary": i["summary"][:300]} for n, i in enumerate(batch)]
+        prompt = ("Переведи на русский заголовки и краткие описания новостей о GTA 6 для игрового портала. "
+                  "Заголовок до 110 символов, живой, без кликбейта и без выдуманных фактов; описание 1-2 предложения. "
+                  "Названия оставь как принято у русскоязычных игроков (Леонида, Вайс-Сити, Лусия, Джейсон). "
+                  "Ответь только JSON-массивом [{\"i\":..,\"title\":..,\"summary\":..}] без пояснений.\n\n"
+                  + json.dumps(payload, ensure_ascii=False))
+        arr = claude_json(prompt, "translate")
+        if arr is None:
+            break
+        for t in arr:
+            try:
+                it = batch[int(t["i"])]
+            except (KeyError, ValueError, IndexError, TypeError):
+                continue
+            it["title_orig"], it["summary_orig"] = it["title"], it["summary"]
+            it["title"], it["summary"], it["_tr"] = t.get("title") or it["title"], t.get("summary") or it["summary"], True
+            done += 1
+    log(f"  translate ru: {done}/{len(todo)}")
 
 
-def translate_uk(items):
+def translate_uk(items, limit=40):
     """Украинские заголовки для /uk/ (title_uk, summary_uk) через Claude API, если задан ключ."""
-    key = os.environ.get("ANTHROPIC_API_KEY")
-    todo = [i for i in items if not i.get("title_uk")][:40]
-    if not key or not todo:
+    if not os.environ.get("ANTHROPIC_API_KEY"):
         return
-    payload = [{"i": n, "title": i.get("title_orig") or i["title"], "summary": i.get("summary_orig") or i["summary"]} for n, i in enumerate(todo)]
-    prompt = ("Переклади українською заголовки й короткі описи новин про GTA 6 для ігрового порталу. "
-              "Заголовок до 110 символів, без клікбейту й вигаданих фактів; опис 1-2 речення. "
-              "Назви: Леоніда, Вайс-Сіті, Лусія, Джейсон. Відповідай лише JSON-масивом [{\"i\":..,\"title\":..,\"summary\":..}].\n\n"
-              + json.dumps(payload, ensure_ascii=False))
-    body = json.dumps({"model": os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5"), "max_tokens": 8000,
-                       "messages": [{"role": "user", "content": prompt}]}).encode()
-    req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body, headers={
-        "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"})
-    try:
-        with urllib.request.urlopen(req, timeout=120) as r:
-            resp = json.loads(r.read())
-            text = "".join(b.get("text", "") for b in resp.get("content", []) if b.get("type") == "text")
-            if not text:
-                raise ValueError(f"no text block, stop={resp.get('stop_reason')} types={[b.get('type') for b in resp.get('content', [])]}")
-        arr = json.loads(text[text.index("["): text.rindex("]") + 1])
-    except Exception as ex:  # noqa: BLE001
-        log(f"! translate_uk: {ex}")
-        return
-    for t in arr:
-        it = todo[int(t["i"])]
-        it["title_uk"], it["summary_uk"] = t.get("title") or "", t.get("summary") or ""
+    todo = [i for i in items if not i.get("title_uk")][:limit]
+    done = 0
+    for batch in _batches(todo):
+        payload = [{"i": n, "title": i.get("title_orig") or i["title"],
+                    "summary": (i.get("summary_orig") or i["summary"])[:300]} for n, i in enumerate(batch)]
+        prompt = ("Переклади українською заголовки й короткі описи новин про GTA 6 для ігрового порталу. "
+                  "Заголовок до 110 символів, без клікбейту й вигаданих фактів; опис 1-2 речення. "
+                  "Назви: Леоніда, Вайс-Сіті, Лусія, Джейсон. Відповідай лише JSON-масивом "
+                  "[{\"i\":..,\"title\":..,\"summary\":..}] без пояснень.\n\n"
+                  + json.dumps(payload, ensure_ascii=False))
+        arr = claude_json(prompt, "translate_uk")
+        if arr is None:
+            break
+        for t in arr:
+            try:
+                it = batch[int(t["i"])]
+            except (KeyError, ValueError, IndexError, TypeError):
+                continue
+            it["title_uk"], it["summary_uk"] = t.get("title") or "", t.get("summary") or ""
+            done += 1
+    log(f"  translate uk: {done}/{len(todo)}")
 
 
 OG_RE = re.compile(r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image)(?::src)?["\'][^>]*content=["\']([^"\']+)', re.I)
