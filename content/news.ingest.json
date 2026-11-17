@@ -906,7 +906,7 @@
   "published": "2026-11-17T18:39:55Z",
   "image": "",
   "tags": [],
-  "score": 76,
+  "score": 75,
   "verified": true
  },
  {
@@ -1676,7 +1676,7 @@
   "published": "2026-11-17T17:03:23Z",
   "image": "",
   "tags": [],
-  "score": 75,
+  "score": 74,
   "verified": true
  },
  {
@@ -2264,7 +2264,7 @@
   "published": "2026-11-17T13:49:00Z",
   "image": "",
   "tags": [],
-  "score": 73,
+  "score": 72,
   "verified": true
  },
  {
@@ -2516,7 +2516,7 @@
   "published": "2026-11-17T12:15:46Z",
   "image": "",
   "tags": [],
-  "score": 72,
+  "score": 71,
   "verified": true
  },
  {
@@ -2754,7 +2754,7 @@
   "published": "2026-11-17T10:40:00Z",
   "image": "",
   "tags": [],
-  "score": 71,
+  "score": 70,
   "verified": true
  },
  {
@@ -3020,7 +3020,7 @@
   "published": "2026-11-17T07:28:08Z",
   "image": "",
   "tags": [],
-  "score": 69,
+  "score": 68,
   "verified": true
  },
  {
@@ -3524,7 +3524,7 @@
   "published": "2026-11-16T13:50:40Z",
   "image": "",
   "tags": [],
-  "score": 58,
+  "score": 57,
   "verified": true
  },
  {
@@ -3998,6 +3998,20 @@
   "source_type": "media",
   "category": "news",
   "published": "2026-11-12T19:02:49Z",
+  "image": "",
+  "tags": [],
+  "score": 33,
+  "verified": true
+ },
+ {
+  "id": "261f0c92b640d8ef1359ab0f485eae7b8ed879d2",
+  "title": "В сеть слили карту GTA 6 из коллекционного издания",
+  "summary": "",
+  "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNQTRvZXFSMW52YXpBNkZmRVJWZlJiMHc1bXpmby03RklrVlBjd01mZ3B1UWpUX2ZOME9LRUl2VC1SeWNCR0w2aE03ZTM0YzFXWE5HWGd6TWRqSE5TRzcteldmelZwWldKeXZpMEpaX0RFRzUzeWlzS2EwMGpPUEttSzJ6dGxDZ29m?oc=5",
+  "source": "VK Play",
+  "source_type": "media",
+  "category": "news",
+  "published": "2026-11-12T17:02:56Z",
   "image": "",
   "tags": [],
   "score": 33,
